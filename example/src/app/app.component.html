@@ -31,7 +31,9 @@
         <fabric *ngIf="type == 'component' && show" fxFlex="auto" [data]="data" [config]="config" [disabled]="disabled" (dataLoaded)="onDataLoaded($event)" (objectAdded)="onObjectAdded($event)" (selectionCreated)="onSelectionCreated($event)">
         </fabric>
 
-        <div *ngIf="type == 'directive' && show" class="fabric-canvas" fxFlex="auto" [fabric]="config" [disabled]="disabled" (objectAdded)="onObjectAdded($event)" (selectionCreated)="onSelectionCreated($event)">
+        <div *ngIf="type == 'directive' && show" fxFlex="auto">
+          <canvas class="fabric-canvas" [fabric]="config" [disabled]="disabled" (objectAdded)="onObjectAdded($event)" (selectionCreated)="onSelectionCreated($event)">
+          </canvas>
         </div>
       </div>
     </div>
