@@ -1,1 +1,1 @@
-# Example app for the ngx-ace-wrapper
+# Example app for the ngx-fabric-wrapper

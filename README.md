@@ -1,12 +1,12 @@
-# Angular Ace Wrapper
+# Angular Fabric Wrapper
 
-<a href="https://badge.fury.io/js/ngx-ace-wrapper"><img src="https://badge.fury.io/js/ngx-ace-wrapper.svg" align="right" alt="npm version" height="18"></a>
+<a href="https://badge.fury.io/js/ngx-fabric-wrapper"><img src="https://badge.fury.io/js/ngx-fabric-wrapper.svg" align="right" alt="npm version" height="18"></a>
 
-This is an Angular wrapper library for the [Ace](http://ace.c9.io/).
+This is an Angular wrapper library for the [Fabric](http://fabricjs.com/).
 
-To use this library you should get familiar with the [Ace documentation](http://ace.c9.io/#nav-api) as well, this documentation only explains details specific to this wrapper.
+To use this library you should get familiar with the [Fabric documentation](http://fabricjs.com/docs/) as well, this documentation only explains details specific to this wrapper.
 
-See a live example application <a href="https://zefoy.github.io/ngx-ace-wrapper/">here</a>.
+See a live example application <a href="https://zefoy.github.io/ngx-fabric-wrapper/">here</a>.
 
 ### Building the library
 
@@ -28,36 +28,35 @@ npm start
 ```bash
 npm link
 cd example
-npm link ngx-ace-wrapper
+npm link ngx-fabric-wrapper
 ```
 
 ### Installing and usage
 
 ```bash
-npm install brace --save
-npm install ngx-ace-wrapper --save
+npm install ngx-fabric-wrapper --save
 ```
 
 ##### Load the module for your app (with global configuration):
 
 ```javascript
-import { AceModule } from 'ngx-ace-wrapper';
-import { ACE_CONFIG } from 'ngx-ace-wrapper';
-import { AceConfigInterface } from 'ngx-ace-wrapper';
+import { FabricModule } from 'ngx-fabric-wrapper';
+import { FABRIC_CONFIG } from 'ngx-fabric-wrapper';
+import { FabricConfigInterface } from 'ngx-fabric-wrapper';
 
-const DEFAULT_ACE_CONFIG: AceConfigInterface = {
+const DEFAULT_FABRIC_CONFIG: FabricConfigInterface = {
 };
 
 @NgModule({
   ...
   imports: [
     ...
-    AceModule
+    FabricModule
   ],
   providers: [
     {
-      provide: ACE_CONFIG,
-      useValue: DEFAULT_ACE_CONFIG
+      provide: FABRIC_CONFIG,
+      useValue: DEFAULT_FABRIC_CONFIG
     }
   ]
 })
@@ -65,85 +64,81 @@ const DEFAULT_ACE_CONFIG: AceConfigInterface = {
 
 ##### Use it in your HTML template (with custom configuration):
 
-This library provides two ways to create a Ace element, component for simple use cases and directive for more custom use cases.
+This library provides two ways to create a Fabric canvas, component for simple use cases and directive for more custom use cases.
 
 **COMPONENT USAGE**
 
-Simply replace the element that would ordinarily be passed to `Ace` with the ace component.
-
-You also need to import brace and the used mode(s) and theme(s):
-
-```javascript
-import 'brace';
-import 'brace/mode/text';
-import 'brace/theme/github';
-```
+Simply replace the canvas that would ordinarily be passed to `Fabric` with the fabric component.
 
 ```html
-<ace [config]="config" [mode]="'text'" [theme]="'github'" [(value)]="value"></ace>
+<fabric [config]="config" [data]="json"></fabric>
 ```
 
 ```javascript
 [config]                     // Custom config to override the global defaults.
 
-[mode]                       // Mode for the editor (import mode manually!).
-[theme]                      // Theme for the editor (import theme manually!).
+[data]                       // JSON data to be loaded on the Fabric canvas.
 
-[value]                      // Input value of the ace editor content (text).
+[zoom]                       // Zoom level for the Fabric canvas (Default: 1).
+[width]                      // Width of the canvas (Default: parents width).
+[height]                     // Height of the canvas (Default: parents height).
 
-[disabled]                   // Disables all functionality (focus & editing).
+[disabled]                   // Disables all functionality (uses static canvas).
 
-[useAceClass]                // Use ace class (use provided default styles).
+[useFabricClass]             // Use fabric class (use provided default styles).
 
-(valueChange)                // Event handler for the input value change event.
+(dataLoaded)                 // Event for when provided data is loaded to the canvas.
+
+(<fabricEvent>)              // All Fabric canvas events / callbacks work as bindings.
+                             // Event names are in camel case (not colon separated).
+                             // Example: object:added -> objectAdded
+
 ```
 
 **DIRECTIVE USAGE**
 
-You need to always import brace and the used mode(s) and theme(s):
-
-```javascript
-import 'brace';
-import 'brace/mode/text';
-import 'brace/theme/github';
-```
-
-Ace directive can be used in correctly structured div element with optional custom configuration:
+Fabric directive can be used in correctly structured canvas element with optional custom configuration:
 
 ```html
-<div class="ace" [ace]="config" [(text)]="text"></div>
+<canvas class="fabric" [fabric]="config"></canvas>
 ```
 
 ```javascript
-[ace]                        // Custom config to override the global defaults.
+[fabric]                     // Custom config to override the global defaults.
+
+[zoom]                       // Zoom level for the Fabric canvas (Default: 1).
+[width]                      // Width of the canvas (Default: parents width).
+[height]                     // Height of the canvas (Default: parents height).
 
 [disabled]                   // Disables all functionality (focus & editing).
+
+(<fabricEvent>)              // All Fabric canvas events / callbacks work as bindings.
+                             // Event names are in camel case (not colon separated).
+                             // Example: object:added -> objectAdded
 ```
 
 ##### Available configuration options (custom / global configuration):
 
 ```javascript
-mode                         // Mode for the editor (import mode manually!).
-theme                        // Theme for the editor (import theme manually!).
+selectionColor               // Color for the selection indicators.
 
-wrap                         // Sets text wrapping to be enabled or disabled.
-tabSize                      // Size in spaces of the soft tabs (Default: 4).
-
-showPrintMargin              // Sets showing of the print margin (Default: false).
-printMarginColumn            // Sets the column where the print margin should be.
+renderOnAddRemove            // Render automatically on objects add / removal.
 ```
 
-For more detailed documentation with all the supported config options see [Ace documentation](http://ace.c9.io/#nav-api).
+For more detailed documentation with all the supported config options see [Fabric documentation](http://fabricjs.com/docs/).
 
 ##### Available control / helper functions (provided by the directive):
 
 ```javascript
-ace()                        // Returns the Ace instance reference for full API access.
+fabric()                          // Returns the Fabric canvas reference for full API access.
 
-clear()                      // Clears the editor document and resets text selection.
+clear()                           // Clears all contexts (background, main, top) of an instance.
 
-setValue(value, cursorPos?)  // Text value for the editor document. Cursor position:
-                             // 0 = select all, -1 = document start, 1 = document end.
+setZoom(zoom)                     // Sets the zoom level of the canvas (less than 1 zooms out).
+setWidth(width)                   // Sets canvas width (when null then parent width is used).
+setHeight(height)                 // Sets canvas height (when null then parent height is used).
+
+loadFromJSON(json, cb?, opts?)    // Populates canvas from json (callback called when finished).
 ```
 
 Above functions can be accessed through the directive reference (available as directiveRef in the component).
