@@ -35,7 +35,7 @@
     "url": "https://github.com/zefoy/ngx-fabric-wrapper.git"
   },
   "dependencies": {
-    "fabric": "2.0.0-rc.1",
+    "fabric": "2.0.0-rc.3",
     "resize-observer-polyfill": "^1.5.0"
   },
   "devDependencies": {
