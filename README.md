@@ -34,7 +34,7 @@ npm link ngx-fabric-wrapper
 ### Installing and usage
 
 ```bash
-npm install ngx-fabric-wrapper --save
+npm install ngx-fabric-wrapper --save --no-optional
 ```
 
 ##### Load the module for your app (with global configuration):

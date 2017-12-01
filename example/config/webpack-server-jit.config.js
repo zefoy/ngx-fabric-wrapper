@@ -55,6 +55,8 @@ module.exports = {
       to: '../dist/assets'
     }]),
 
+    new webpack.IgnorePlugin(/jsdom/),
+
     new webpack.ContextReplacementPlugin(
       /@angular(\\|\/)core(\\|\/)/,
       path.join(__dirname, '../src')
