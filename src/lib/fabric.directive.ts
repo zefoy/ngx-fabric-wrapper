@@ -22,7 +22,6 @@ export class FabricDirective implements OnInit, DoCheck, OnDestroy, OnChanges {
   private objectsJSON: any = null;
 
   private initialZoom: number = null;
-
   private initialWidth: number = null;
   private initialHeight: number = null;
 
@@ -177,11 +176,15 @@ export class FabricDirective implements OnInit, DoCheck, OnDestroy, OnChanges {
   }
 
   public clear() {
-    this.instance.clear();
+    if (this.instance) {
+      this.instance.clear();
+    }
   }
 
   public render() {
-    this.instance.renderAll();
+    if (this.instance) {
+      this.instance.renderAll();
+    }
   }
 
   public setZoom(zoom: number) {
@@ -209,16 +212,18 @@ export class FabricDirective implements OnInit, DoCheck, OnDestroy, OnChanges {
   }
 
   public loadFromJSON(json: any, callback?: Function, reviverOpt?: any) {
-    this.instance.loadFromJSON(json, () => {
-      let renderAll = true;
+    if (this.instance) {
+      this.instance.loadFromJSON(json, () => {
+        let renderAll = true;
 
-      if (callback) {
-        renderAll = callback();
-      }
+        if (callback) {
+          renderAll = callback();
+        }
 
-      if (renderAll) {
-        this.instance.renderAll();
-      }
-    }, reviverOpt);
+        if (renderAll) {
+          this.instance.renderAll();
+        }
+      }, reviverOpt);
+    }
   }
 }
