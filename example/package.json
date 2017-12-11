@@ -1,6 +1,7 @@
 {
   "name": "ngx-fabric-wrapper-example",
   "description": "Example app for the ngx-fabric-wrapper",
+  "private": true,
   "license": "MIT",
   "version": "5.0.0",
   "tslint": {
