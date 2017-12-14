@@ -8,6 +8,7 @@ import { FabricConfigInterface } from './fabric.interfaces';
 
 @Component({
   selector: 'fabric',
+  exportAs: 'ngxFabric',
   templateUrl: './lib/fabric.component.html',
   styleUrls: [ './lib/fabric.component.css' ],
   encapsulation: ViewEncapsulation.None
