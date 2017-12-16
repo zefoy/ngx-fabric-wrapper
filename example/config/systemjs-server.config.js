@@ -27,6 +27,7 @@
       'rxjs': 'npm:rxjs',
       'ts': 'npm:plugin-typescript/lib/plugin.js',
       'typescript': 'npm:typescript/lib/typescript.js',
+      'fabric': 'npm:fabric/dist/fabric.js',
       'ngx-fabric-wrapper': 'npm:ngx-fabric-wrapper/bundles/ngx-fabric-wrapper.umd.js'
     },
     packages: {
