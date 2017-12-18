@@ -2,11 +2,15 @@
 
 <a href="https://badge.fury.io/js/ngx-fabric-wrapper"><img src="https://badge.fury.io/js/ngx-fabric-wrapper.svg" align="right" alt="npm version" height="18"></a>
 
-This is an Angular wrapper library for the [Fabric](http://fabricjs.com/).
+This is an Angular wrapper library for the [Fabric](http://fabricjs.com/). To use this library you should get familiar with the Fabric documentation as well since this documentation only explains details specific to this wrapper.
 
-To use this library you should get familiar with the [Fabric documentation](http://fabricjs.com/docs/) as well, this documentation only explains details specific to this wrapper.
+### Quick links
 
-See a live example application <a href="https://zefoy.github.io/ngx-fabric-wrapper/">here</a>.
+[Example application](https://zefoy.github.io/ngx-fabric-wrapper/)
+ | 
+[Plunker template](http://plnkr.co/edit/NV8turYQr6iMwNG58DBk?p=preview)
+ | 
+[Fabric documentation](http://fabricjs.com/docs/)
 
 ### Building the library
 
@@ -125,7 +129,7 @@ selectionColor               // Color for the selection indicators.
 renderOnAddRemove            // Render automatically on objects add / removal.
 ```
 
-For more detailed documentation with all the supported config options see [Fabric documentation](http://fabricjs.com/docs/).
+For more detailed documentation with all the supported config options see the Fabric documentation.
 
 ##### Available control / helper functions (provided by the directive):
 
