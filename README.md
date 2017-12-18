@@ -84,6 +84,7 @@ Simply replace the canvas that would ordinarily be passed to `Fabric` with the f
 [data]                       // JSON data to be loaded on the Fabric canvas.
 
 [zoom]                       // Zoom level for the Fabric canvas (Default: 1).
+
 [width]                      // Width of the canvas (Default: parents width).
 [height]                     // Height of the canvas (Default: parents height).
 
@@ -111,6 +112,7 @@ Fabric directive can be used in correctly structured canvas element with optiona
 [fabric]                     // Custom config to override the global defaults.
 
 [zoom]                       // Zoom level for the Fabric canvas (Default: 1).
+
 [width]                      // Width of the canvas (Default: parents width).
 [height]                     // Height of the canvas (Default: parents height).
 
