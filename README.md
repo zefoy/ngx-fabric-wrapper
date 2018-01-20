@@ -43,6 +43,8 @@ npm install ngx-fabric-wrapper --save --no-optional
 
 ##### Load the module for your app (with global configuration):
 
+Providing the global configuration is optional and when used you should only provide the configuration in your root module.
+
 ```javascript
 import { FabricModule } from 'ngx-fabric-wrapper';
 import { FABRIC_CONFIG } from 'ngx-fabric-wrapper';
