@@ -8,7 +8,7 @@ This is an Angular wrapper library for the [Fabric](http://fabricjs.com/). To us
 
 [Example application](https://zefoy.github.io/ngx-fabric-wrapper/)
  | 
-[Plunker template](http://plnkr.co/edit/NV8turYQr6iMwNG58DBk?p=preview)
+[StackBlitz example](https://stackblitz.com/github/zefoy/ngx-fabric-wrapper/tree/master/example)
  | 
 [Fabric documentation](http://fabricjs.com/docs/)
 
