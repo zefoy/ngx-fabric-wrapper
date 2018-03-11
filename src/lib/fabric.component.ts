@@ -60,13 +60,13 @@ export class FabricComponent implements AfterViewInit {
 
   constructor() {}
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     if (this.json != null) {
       this.setJSON(this.json, true);
     }
   }
 
-  private setJSON(json: string, force?: boolean) {
+  private setJSON(json: string, force?: boolean): void {
     if (force || json !== this.json) {
       if (this.directiveRef && this.directiveRef.fabric()) {
         this.directiveRef.loadFromJSON(json, () => {

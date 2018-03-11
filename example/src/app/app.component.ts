@@ -57,11 +57,11 @@ export class AppComponent {
 
   constructor() {}
 
-  toggleType() {
+  public toggleType(): void {
     this.type = (this.type === 'component') ? 'directive' : 'component';
   }
 
-  addLine() {
+  public addLine(): void {
     const directiveRef = (this.type === 'directive') ?
       this.directiveRef : this.componentRef.directiveRef;
 
@@ -76,7 +76,7 @@ export class AppComponent {
     directiveRef.fabric().add(line);
   }
 
-  addText() {
+  public addText(): void {
     const directiveRef = (this.type === 'directive') ?
       this.directiveRef : this.componentRef.directiveRef;
 
@@ -89,7 +89,7 @@ export class AppComponent {
     directiveRef.fabric().add(text);
   }
 
-  addImage() {
+  public addImage(): void {
     const directiveRef = (this.type === 'directive') ?
       this.directiveRef : this.componentRef.directiveRef;
 
@@ -102,11 +102,11 @@ export class AppComponent {
     });
   }
 
-  toggleDisabled() {
+  public toggleDisabled(): void {
     this.disabled = !this.disabled;
   }
 
-  resetCanvasObjects() {
+  public resetCanvasObjects(): void {
     if (this.type === 'directive') {
       this.directiveRef.clear();
     } else if (this.type === 'component') {
@@ -116,15 +116,15 @@ export class AppComponent {
     this.data = Object.assign({}, this.data);
   }
 
-  onDataLoaded(canvas: any) {
+  public onDataLoaded(canvas: any): void {
     console.log('Data loaded:', canvas);
   }
 
-  onObjectAdded(event: any) {
+  public onObjectAdded(event: any): void {
     console.log('Object added:', event);
   }
 
-  onSelectionCreated(event: any) {
+  public onSelectionCreated(event: any): void {
     console.log('Selection created:', event);
   }
 }

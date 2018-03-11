@@ -1,9 +1,9 @@
-import { fabric } from 'fabric';
+import { fabric as Fabric } from 'fabric';
 
 import ResizeObserver from 'resize-observer-polyfill';
 
 import { Directive, Optional, Inject,
-  OnInit, DoCheck, OnDestroy, OnChanges,
+  OnInit, OnDestroy, DoCheck, OnChanges,
   Input, Output, EventEmitter, NgZone, ElementRef,
   KeyValueDiffer, KeyValueDiffers, SimpleChanges } from '@angular/core';
 
@@ -15,7 +15,7 @@ import { FabricEvents, FabricConfig, FabricConfigInterface } from './fabric.inte
   selector: '[fabric]',
   exportAs: 'ngxFabric'
 })
-export class FabricDirective implements OnInit, DoCheck, OnDestroy, OnChanges {
+export class FabricDirective implements OnInit, OnDestroy, DoCheck, OnChanges {
   private ro: any = null;
   private instance: any = null;
 
@@ -70,16 +70,16 @@ export class FabricDirective implements OnInit, DoCheck, OnDestroy, OnChanges {
     private elementRef: ElementRef, private differs: KeyValueDiffers,
     @Optional() @Inject(FABRIC_CONFIG) private defaults: FabricConfigInterface) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     const params = new FabricConfig(this.defaults);
 
     params.assign(this.config); // Custom configuration
 
     this.zone.runOutsideAngular(() => {
       if (!this.disabled) {
-        this.instance = new fabric.Canvas(this.elementRef.nativeElement, params);
+        this.instance = new Fabric.Canvas(this.elementRef.nativeElement, params);
       } else {
-        this.instance = new fabric.StaticCanvas(this.elementRef.nativeElement, params);
+        this.instance = new Fabric.StaticCanvas(this.elementRef.nativeElement, params);
       }
 
       if (this.initialZoom) {
@@ -133,19 +133,7 @@ export class FabricDirective implements OnInit, DoCheck, OnDestroy, OnChanges {
     });
   }
 
-  ngDoCheck() {
-    if (this.configDiff) {
-      const changes = this.configDiff.diff(this.config || {});
-
-      if (changes) {
-        this.ngOnDestroy();
-
-        this.ngOnInit();
-      }
-    }
-  }
-
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.ro) {
       this.ro.disconnect();
     }
@@ -161,7 +149,19 @@ export class FabricDirective implements OnInit, DoCheck, OnDestroy, OnChanges {
     }
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngDoCheck(): void {
+    if (this.configDiff) {
+      const changes = this.configDiff.diff(this.config || {});
+
+      if (changes) {
+        this.ngOnDestroy();
+
+        this.ngOnInit();
+      }
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
     if (this.instance && changes['disabled']) {
       if (changes['disabled'].currentValue !== changes['disabled'].previousValue) {
         this.ngOnDestroy();
@@ -171,23 +171,23 @@ export class FabricDirective implements OnInit, DoCheck, OnDestroy, OnChanges {
     }
   }
 
-  public fabric() {
+  public fabric(): any {
     return this.instance;
   }
 
-  public clear() {
+  public clear(): void {
     if (this.instance) {
       this.instance.clear();
     }
   }
 
-  public render() {
+  public render(): void {
     if (this.instance) {
       this.instance.renderAll();
     }
   }
 
-  public setZoom(zoom: number) {
+  public setZoom(zoom: number): void {
     this.initialZoom = zoom;
 
     if (this.instance) {
@@ -195,7 +195,7 @@ export class FabricDirective implements OnInit, DoCheck, OnDestroy, OnChanges {
     }
   }
 
-  public setWidth(width: number) {
+  public setWidth(width: number): void {
     this.initialWidth = width;
 
     if (this.instance) {
@@ -203,7 +203,7 @@ export class FabricDirective implements OnInit, DoCheck, OnDestroy, OnChanges {
     }
   }
 
-  public setHeight(height: number) {
+  public setHeight(height: number): void {
     this.initialHeight = height;
 
     if (this.instance) {
@@ -211,7 +211,7 @@ export class FabricDirective implements OnInit, DoCheck, OnDestroy, OnChanges {
     }
   }
 
-  public loadFromJSON(json: any, callback?: Function, reviverOpt?: any) {
+  public loadFromJSON(json: any, callback?: Function, reviverOpt?: any): void {
     if (this.instance) {
       this.instance.loadFromJSON(json, () => {
         let renderAll = true;
