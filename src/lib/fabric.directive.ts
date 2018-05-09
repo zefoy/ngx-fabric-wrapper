@@ -104,9 +104,9 @@ export class FabricDirective implements OnInit, OnDestroy, DoCheck, OnChanges {
       const fabricEvent = eventName.replace(/([A-Z])/g, (c) => `:${c.toLowerCase()}`);
 
       this.instance.on(fabricEvent, (event) => {
-        this.zone.run(() => {
+        if (this[eventName].observers.length) {
           this[eventName].emit(event);
-        });
+        }
       });
     });
 
