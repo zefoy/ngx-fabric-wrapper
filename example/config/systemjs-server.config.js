@@ -47,6 +47,9 @@
           }
         }
       },
+      'fabric': {
+        format: 'global'
+      },
       'rxjs': {
         main: 'index.js',
         defaultExtension: 'js'
