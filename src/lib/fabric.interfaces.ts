@@ -139,9 +139,9 @@ export class FabricConfig implements FabricConfigInterface {
     this.assign(config);
   }
 
-  assign(config: FabricConfigInterface | any = {}) {
+  assign(config: FabricConfigInterface = {}) {
     for (const key in config) {
-      this[key as keyof FabricConfig] = config[key];
+      this[key as keyof FabricConfig] = config[key as keyof FabricConfigInterface];
     }
   }
 }
