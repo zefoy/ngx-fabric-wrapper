@@ -1,4 +1,4 @@
-import { fabric as Fabric } from 'fabric';
+import { fabric } from 'fabric';
 
 import ResizeObserver from 'resize-observer-polyfill';
 
@@ -7,25 +7,25 @@ import { Directive, Optional, Inject,
   Input, Output, EventEmitter, NgZone, ElementRef,
   KeyValueDiffer, KeyValueDiffers, SimpleChanges } from '@angular/core';
 
-import { FABRIC_CONFIG } from './fabric.interfaces';
-
-import { FabricEvents, FabricConfig, FabricConfigInterface } from './fabric.interfaces';
+import { FABRIC_CONFIG, FabricConfig, FabricConfigInterface,
+  FabricEvent, FabricEvents } from './fabric.interfaces';
 
 @Directive({
   selector: '[fabric]',
   exportAs: 'ngxFabric'
 })
 export class FabricDirective implements OnInit, OnDestroy, DoCheck, OnChanges {
-  private ro: any = null;
-  private instance: any = null;
+  private instance: fabric.Canvas | fabric.StaticCanvas | null = null;
 
-  private objectsJSON: any = null;
+  private ro: ResizeObserver | null = null;
 
-  private initialZoom: number = null;
-  private initialWidth: number = null;
-  private initialHeight: number = null;
+  private objectsJSON: object | null = null;
 
-  private configDiff: KeyValueDiffer<string, any>;
+  private initialZoom: number | null = null;
+  private initialWidth: number | null = null;
+  private initialHeight: number | null = null;
+
+  private configDiff: KeyValueDiffer<string, any> | null = null;
 
   @Input()
   set zoom(zoom: number) {
@@ -43,7 +43,7 @@ export class FabricDirective implements OnInit, OnDestroy, DoCheck, OnChanges {
 
   @Input() disabled: boolean = false;
 
-  @Input('fabric') config: FabricConfigInterface;
+  @Input('fabric') config?: FabricConfigInterface;
 
   @Output() mouseUp = new EventEmitter<any>();
   @Output() mouseDown = new EventEmitter<any>();
@@ -77,9 +77,9 @@ export class FabricDirective implements OnInit, OnDestroy, DoCheck, OnChanges {
 
     this.zone.runOutsideAngular(() => {
       if (!this.disabled) {
-        this.instance = new Fabric.Canvas(this.elementRef.nativeElement, params);
+        this.instance = new fabric.Canvas(this.elementRef.nativeElement, params);
       } else {
-        this.instance = new Fabric.StaticCanvas(this.elementRef.nativeElement, params);
+        this.instance = new fabric.StaticCanvas(this.elementRef.nativeElement, params);
       }
 
       if (this.initialZoom) {
@@ -100,14 +100,16 @@ export class FabricDirective implements OnInit, OnDestroy, DoCheck, OnChanges {
     });
 
     // Add native Fabric event handling
-    FabricEvents.forEach((eventName: string) => {
+    FabricEvents.forEach((eventName: FabricEvent) => {
       const fabricEvent = eventName.replace(/([A-Z])/g, (c) => `:${c.toLowerCase()}`);
 
-      this.instance.on(fabricEvent, (event) => {
-        if (this[eventName].observers.length) {
-          this[eventName].emit(event);
-        }
-      });
+      if (this.instance) {
+        this.instance.on(fabricEvent, (event: any) => {
+          if (this[eventName].observers.length) {
+            this[eventName].emit(event);
+          }
+        });
+      }
     });
 
     if (!this.configDiff) {
@@ -139,7 +141,7 @@ export class FabricDirective implements OnInit, OnDestroy, DoCheck, OnChanges {
     }
 
     if (this.instance) {
-      this.objectsJSON = this.instance.toJSON();
+      this.objectsJSON = this.instance.toObject();
 
       this.instance.dispose();
 
@@ -220,7 +222,7 @@ export class FabricDirective implements OnInit, OnDestroy, DoCheck, OnChanges {
           renderAll = callback();
         }
 
-        if (renderAll) {
+        if (renderAll && this.instance) {
           this.instance.renderAll();
         }
       }, reviverOpt);

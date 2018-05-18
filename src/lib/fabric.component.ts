@@ -21,14 +21,14 @@ export class FabricComponent implements AfterViewInit {
     this.setJSON(data);
   }
 
-  @Input() zoom: number = null;
+  @Input() zoom: number | null = null;
 
-  @Input() width: number = null;
-  @Input() height: number = null;
+  @Input() width: number | null = null;
+  @Input() height: number | null = null;
 
   @Input() disabled: boolean = false;
 
-  @Input() config: FabricConfigInterface;
+  @Input() config?: FabricConfigInterface;
 
   @HostBinding('class.fabric')
   @Input() useFabricClass: boolean = true;
@@ -56,7 +56,7 @@ export class FabricComponent implements AfterViewInit {
   @Output() selectionUpdated = new EventEmitter<any>();
   @Output() beforeSelectionCleared = new EventEmitter<any>();
 
-  @ViewChild(FabricDirective) directiveRef: FabricDirective;
+  @ViewChild(FabricDirective) directiveRef: FabricDirective | undefined;
 
   constructor() {}
 
@@ -68,9 +68,11 @@ export class FabricComponent implements AfterViewInit {
 
   private setJSON(json: string, force?: boolean): void {
     if (force || json !== this.json) {
-      if (this.directiveRef && this.directiveRef.fabric()) {
+      if (this.directiveRef) {
         this.directiveRef.loadFromJSON(json, () => {
-          this.dataLoaded.emit(this.directiveRef.fabric());
+          if (this.directiveRef && this.directiveRef.fabric()) {
+            this.dataLoaded.emit(this.directiveRef.fabric());
+          }
         });
       }
 

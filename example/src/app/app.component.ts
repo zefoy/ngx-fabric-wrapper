@@ -52,8 +52,8 @@ export class AppComponent {
     renderOnAddRemove: true
   };
 
-  @ViewChild(FabricComponent) componentRef: FabricComponent;
-  @ViewChild(FabricDirective) directiveRef: FabricDirective;
+  @ViewChild(FabricComponent) componentRef: FabricComponent | undefined;
+  @ViewChild(FabricDirective) directiveRef: FabricDirective | undefined;
 
   constructor() {}
 
@@ -62,9 +62,6 @@ export class AppComponent {
   }
 
   public addLine(): void {
-    const directiveRef = (this.type === 'directive') ?
-      this.directiveRef : this.componentRef.directiveRef;
-
     const line = new fabric.Line([
       44, 100, 300, 100
     ], {
@@ -73,32 +70,38 @@ export class AppComponent {
       strokeWidth: 3
     });
 
-    directiveRef.fabric().add(line);
+    if (this.type === 'directive' && this.directiveRef) {
+      this.directiveRef.fabric().add(line);
+    } else if (this.type === 'directive' && this.componentRef && this.componentRef.directiveRef) {
+      this.componentRef.directiveRef.fabric().add(line);
+    }
   }
 
   public addText(): void {
-    const directiveRef = (this.type === 'directive') ?
-      this.directiveRef : this.componentRef.directiveRef;
-
     const text = new fabric.Text('Angular', {
       top: 120,
       left: 105,
       fill: '#000000'
     });
 
-    directiveRef.fabric().add(text);
+    if (this.type === 'directive' && this.directiveRef) {
+      this.directiveRef.fabric().add(text);
+    } else if (this.type === 'directive' && this.componentRef && this.componentRef.directiveRef) {
+      this.componentRef.directiveRef.fabric().add(text);
+    }
   }
 
   public addImage(): void {
-    const directiveRef = (this.type === 'directive') ?
-      this.directiveRef : this.componentRef.directiveRef;
-
-    fabric.Image.fromURL('https://angular.io/assets/images/logos/angular/angular.png', function(image) {
+    fabric.Image.fromURL('https://angular.io/assets/images/logos/angular/angular.png', (image) => {
       image.scale(0.5);
 
       image.set({ left: 110, top: 180 });
 
-      directiveRef.fabric().add(image);
+      if (this.type === 'directive' && this.directiveRef) {
+        this.directiveRef.fabric().add(image);
+      } else if (this.type === 'directive' && this.componentRef && this.componentRef.directiveRef) {
+        this.componentRef.directiveRef.fabric().add(image);
+      }
     });
   }
 
@@ -107,9 +110,9 @@ export class AppComponent {
   }
 
   public resetCanvasObjects(): void {
-    if (this.type === 'directive') {
+    if (this.type === 'directive' && this.directiveRef) {
       this.directiveRef.clear();
-    } else if (this.type === 'component') {
+    } else if (this.type === 'directive' && this.componentRef && this.componentRef.directiveRef) {
       this.componentRef.directiveRef.clear();
     }
 

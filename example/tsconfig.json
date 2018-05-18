@@ -1,29 +1,32 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "declaration": true,
+    "baseUrl": "",
+    "declaration": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "inlineSources": true,
+    "inlineSources": false,
     "lib": [
       "es2015",
       "dom"
     ],
     "module": "es2015",
     "moduleResolution": "node",
-    "outDir": "../dist",
+    "outDir": "./dist",
+    "paths": {
+      "@angular/*": [
+        "./node_modules/@angular/*"
+      ]
+    },
     "rootDir": ".",
-    "skipLibCheck": true,
-    "sourceMap": true,
     "strict": true,
+    "sourceMap": true,
     "target": "es5",
     "typeRoots": [
-      "../node_modules/@types"
+      "./node_modules/@types"
     ],
     "types": [
       "node",
       "fabric"
-      // Add this when 2.x typings available: "fabric"
     ]
   }
 }
