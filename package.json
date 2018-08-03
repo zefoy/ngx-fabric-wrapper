@@ -22,7 +22,7 @@
     "bundle": "npm run bundle:es5 ; npm run bundle:umd ; npm run minify:umd",
     "prepare": "npm run clean && npm run build && npm run bundle",
     "lint:ts": "tslint \"src/**/*.ts\"",
-    "lint:css": "stylelint \"src/**/*.scss\"",
+    "lint:css": "stylelint \"src/**/*.css\"",
     "build:js": "ngc -p src/tsconfig.json",
     "build:css": "cpx src/lib/fabric.component.css dist/lib/",
     "build:html": "cpx src/lib/fabric.component.html dist/lib/",

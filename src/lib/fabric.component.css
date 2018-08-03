@@ -1,4 +1,4 @@
-fabric &[fxflex] {
+fabric[fxflex] {
   display: flex;
   flex-direction: column;
   min-width: 0;
