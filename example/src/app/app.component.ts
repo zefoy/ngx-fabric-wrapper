@@ -72,7 +72,7 @@ export class AppComponent {
 
     if (this.type === 'directive' && this.directiveRef) {
       this.directiveRef.fabric().add(line);
-    } else if (this.type === 'directive' && this.componentRef && this.componentRef.directiveRef) {
+    } else if (this.type === 'component' && this.componentRef && this.componentRef.directiveRef) {
       this.componentRef.directiveRef.fabric().add(line);
     }
   }
@@ -86,7 +86,7 @@ export class AppComponent {
 
     if (this.type === 'directive' && this.directiveRef) {
       this.directiveRef.fabric().add(text);
-    } else if (this.type === 'directive' && this.componentRef && this.componentRef.directiveRef) {
+    } else if (this.type === 'component' && this.componentRef && this.componentRef.directiveRef) {
       this.componentRef.directiveRef.fabric().add(text);
     }
   }
@@ -99,7 +99,7 @@ export class AppComponent {
 
       if (this.type === 'directive' && this.directiveRef) {
         this.directiveRef.fabric().add(image);
-      } else if (this.type === 'directive' && this.componentRef && this.componentRef.directiveRef) {
+      } else if (this.type === 'component' && this.componentRef && this.componentRef.directiveRef) {
         this.componentRef.directiveRef.fabric().add(image);
       }
     });
@@ -112,7 +112,7 @@ export class AppComponent {
   public resetCanvasObjects(): void {
     if (this.type === 'directive' && this.directiveRef) {
       this.directiveRef.clear();
-    } else if (this.type === 'directive' && this.componentRef && this.componentRef.directiveRef) {
+    } else if (this.type === 'component' && this.componentRef && this.componentRef.directiveRef) {
       this.componentRef.directiveRef.clear();
     }
 
