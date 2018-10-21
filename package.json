@@ -3,7 +3,7 @@
   "description": "Angular wrapper library for Fabric",
   "bugs": "https://github.com/zefoy/ngx-fabric-wrapper/issues",
   "license": "MIT",
-  "version": "6.2.1",
+  "version": "7.0.0",
   "main": "./bundles/ngx-fabric-wrapper.umd.js",
   "module": "./dist/ngx-fabric-wrapper.es5.js",
   "typings": "./dist/ngx-fabric-wrapper.d.ts",
