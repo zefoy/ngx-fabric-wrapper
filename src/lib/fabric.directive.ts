@@ -60,6 +60,7 @@ export class FabricDirective implements OnInit, OnDestroy, DoCheck, OnChanges {
   @Output() objectMoving = new EventEmitter<any>();
   @Output() objectScaling = new EventEmitter<any>();
   @Output() objectRotating = new EventEmitter<any>();
+  @Output() objectSelected = new EventEmitter<any>();
 
   @Output() selectionCleared = new EventEmitter<any>();
   @Output() selectionCreated = new EventEmitter<any>();

@@ -4,8 +4,8 @@ export const FABRIC_CONFIG = new InjectionToken<FabricConfigInterface>('FABRIC_C
 
 export type FabricEvent = 'mouseUp' | 'mouseDown' | 'mouseOver' | 'mouseOut' | 'mouseMove' |
   'mouseDblclick' | 'pathCreated' | 'objectAdded' | 'objectRemoved' | 'objectModified' |
-  'objectMoving' | 'objectScaling' | 'objectRotating' | 'selectionCleared' | 'selectionCreated' |
-  'selectionUpdated' | 'beforeSelectionCleared';
+  'objectMoving' | 'objectScaling' | 'objectRotating' | 'objectSelected' | 'selectionCleared' |
+  'selectionCreated' | 'selectionUpdated' | 'beforeSelectionCleared';
 
 export const FabricEvents: FabricEvent[] = [
   'mouseUp',
@@ -23,6 +23,7 @@ export const FabricEvents: FabricEvent[] = [
   'objectMoving',
   'objectScaling',
   'objectRotating',
+  'objectSelected',
 
   'selectionCleared',
   'selectionCreated',
