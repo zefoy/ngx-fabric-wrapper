@@ -133,9 +133,11 @@ export class FabricDirective implements OnInit, OnDestroy, DoCheck, OnChanges {
 
       if (this.instance) {
         this.instance.on(fabricEvent, (event: any) => {
-          if (this[eventName].observers.length) {
-            this[eventName].emit(event);
-          }
+          this.zone.run(() => {
+            if (this[eventName].observers.length) {
+              this[eventName].emit(event);
+            }
+          });
         });
       }
     });
