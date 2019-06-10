@@ -41,7 +41,7 @@
     "@angular/platform-browser-dynamic": "^8.0.0",
     "core-js": "^3.1.0",
     "fabric": "^3.1.0",
-    "ngx-fabric-wrapper": "^7.2.0",
+    "ngx-fabric-wrapper": "^8.0.0",
     "rxjs": "^6.5.0",
     "zone.js": "^0.9.0"
   },
