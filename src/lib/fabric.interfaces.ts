@@ -2,32 +2,63 @@ import { InjectionToken } from '@angular/core';
 
 export const FABRIC_CONFIG = new InjectionToken<FabricConfigInterface>('FABRIC_CONFIG');
 
-export type FabricEvent = 'mouseUp' | 'mouseDown' | 'mouseOver' | 'mouseOut' | 'mouseMove' |
-  'mouseDblclick' | 'pathCreated' | 'objectAdded' | 'objectRemoved' | 'objectModified' |
-  'objectMoving' | 'objectScaling' | 'objectRotating' | 'objectSelected' | 'selectionCleared' |
-  'selectionCreated' | 'selectionUpdated' | 'beforeSelectionCleared';
+export type FabricEvent = 'drop' | 'dragover' | 'dragenter' | 'dragleave' | 'mouseup' |
+  'mousedown' | 'mouseover' | 'mouseout' | 'mousemove' | 'mousewheel' | 'mousedblclick' |
+  'mouseupBefore' | 'mousedownBefore' | 'mousemoveBefore' | 'mouseUp' | 'mouseDown' |
+  'mouseOver' | 'mouseOut' | 'mouseMove' | 'mouseDblclick' | 'mouseUpBefore' | 'mouseDownBefore' |
+  'mouseMoveBefore' | 'pathCreated' | 'alterRender' | 'objectAdded' | 'objectMoved' | 'objectScaled' |
+  'objectSkewed' | 'objectRotated' | 'objectRemoved' | 'objectModified' | 'objectSelected' |
+  'objectMoving' | 'objectScaling' | 'objectSkewing' | 'objectRotating' | 'selectionCleared' |
+  'selectionCreated' | 'selectionUpdated' | 'beforeTransform' | 'beforeSelectionCleared';
 
 export const FabricEvents: FabricEvent[] = [
+  'drop',
+  'dragover',
+  'dragenter',
+  'dragleave',
+
+  'mouseup',
+  'mousedown',
+  'mouseover',
+  'mouseout',
+  'mousemove',
+  'mousewheel',
+  'mousedblclick',
+  'mouseupBefore',
+  'mousedownBefore',
+  'mousemoveBefore',
+
   'mouseUp',
   'mouseDown',
   'mouseOver',
   'mouseOut',
   'mouseMove',
   'mouseDblclick',
+  'mouseUpBefore',
+  'mouseDownBefore',
+  'mouseMoveBefore',
 
   'pathCreated',
+  'alterRender',
 
   'objectAdded',
+  'objectMoved',
+  'objectScaled',
+  'objectSkewed',
+  'objectRotated',
   'objectRemoved',
   'objectModified',
+  'objectSelected',
   'objectMoving',
   'objectScaling',
+  'objectSkewing',
   'objectRotating',
-  'objectSelected',
 
   'selectionCleared',
   'selectionCreated',
   'selectionUpdated',
+
+  'beforeTransform',
   'beforeSelectionCleared'
 ];
 
