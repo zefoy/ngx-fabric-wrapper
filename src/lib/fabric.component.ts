@@ -57,7 +57,7 @@ export class FabricComponent implements AfterViewInit {
   @Output() selectionUpdated = new EventEmitter<any>();
   @Output() beforeSelectionCleared = new EventEmitter<any>();
 
-  @ViewChild(FabricDirective) directiveRef?: FabricDirective;
+  @ViewChild(FabricDirective, { static: true }) directiveRef?: FabricDirective;
 
   constructor() {}
 

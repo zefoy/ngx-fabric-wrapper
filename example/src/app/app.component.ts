@@ -52,8 +52,8 @@ export class AppComponent {
     renderOnAddRemove: true
   };
 
-  @ViewChild(FabricComponent) componentRef?: FabricComponent;
-  @ViewChild(FabricDirective) directiveRef?: FabricDirective;
+  @ViewChild(FabricComponent, { static: false }) componentRef?: FabricComponent;
+  @ViewChild(FabricDirective, { static: false }) directiveRef?: FabricDirective;
 
   constructor() {}
 
