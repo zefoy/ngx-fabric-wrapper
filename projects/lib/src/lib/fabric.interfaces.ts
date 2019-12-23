@@ -173,7 +173,7 @@ export class FabricConfig implements FabricConfigInterface {
 
   assign(config: FabricConfigInterface = {}) {
     for (const key in config) {
-      this[key as keyof FabricConfig] = config[key as keyof FabricConfigInterface];
+      this[key as keyof FabricConfig] = config[key as keyof FabricConfigInterface] as never;
     }
   }
 }
