@@ -9,8 +9,8 @@ import { FabricConfigInterface } from './fabric.interfaces';
 @Component({
   selector: 'fabric',
   exportAs: 'ngxFabric',
-  templateUrl: '../../dist/lib/fabric.component.html',
-  styleUrls: [ '../../dist/lib/fabric.component.css' ],
+  templateUrl: './fabric.component.html',
+  styleUrls: [ './fabric.component.css' ],
   encapsulation: ViewEncapsulation.None
 })
 export class FabricComponent implements AfterViewInit {
