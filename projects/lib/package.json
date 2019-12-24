@@ -4,6 +4,10 @@
   "bugs": "https://github.com/zefoy/ngx-fabric-wrapper/issues",
   "version": "9.0.0-2",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zefoy/ngx-fabric-wrapper.git"
+  },
   "dependencies": {
     "fabric": "^3.5.0"
   },

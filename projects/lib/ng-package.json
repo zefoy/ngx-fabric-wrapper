@@ -7,5 +7,9 @@
       "fabric": "fabric",
       "resize-observer-polyfill": "ResizeObserver"
     }
-  }
+  },
+  "whitelistedNonPeerDependencies": [
+    "fabric",
+    "resize-observer-polyfill"
+  ]
 }
