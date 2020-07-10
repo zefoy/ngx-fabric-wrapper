@@ -9,11 +9,12 @@
     "url": "https://github.com/zefoy/ngx-fabric-wrapper.git"
   },
   "dependencies": {
-    "fabric": "^3.6.0"
-  ,    "tslib": "^2.0.0"
-},
+    "fabric": "^3.6.3",
+    "tslib": "^2.0.0",
+    "resize-observer-polyfill": "^1.5.1"
+  },
   "peerDependencies": {
-    "@angular/common": "^9.0.0",
-    "@angular/core": "^9.0.0"
+    "@angular/common": "^10.0.3",
+    "@angular/core": "^10.0.3"
   }
 }
