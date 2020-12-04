@@ -5,11 +5,11 @@ export const FABRIC_CONFIG = new InjectionToken<FabricConfigInterface>('FABRIC_C
 export type FabricEvent = 'drop' | 'dragover' | 'dragenter' | 'dragleave' | 'mouseup' |
   'mousedown' | 'mouseover' | 'mouseout' | 'mousemove' | 'mousewheel' | 'mousedblclick' |
   'mouseupBefore' | 'mousedownBefore' | 'mousemoveBefore' | 'mouseUp' | 'mouseDown' |
-  'mouseOver' | 'mouseOut' | 'mouseMove' | 'mouseDblclick' | 'mouseUpBefore' | 'mouseDownBefore' |
+  'mouseOver' | 'mouseOut' | 'mouseMove' | 'mouseWheel' | 'mouseDblclick' | 'mouseUpBefore' | 'mouseDownBefore' |
   'mouseMoveBefore' | 'pathCreated' | 'alterRender' | 'objectAdded' | 'objectMoved' | 'objectScaled' |
   'objectSkewed' | 'objectRotated' | 'objectRemoved' | 'objectModified' | 'objectSelected' |
   'objectMoving' | 'objectScaling' | 'objectSkewing' | 'objectRotating' | 'selectionCleared' |
-  'selectionCreated' | 'selectionUpdated' | 'beforeTransform' | 'beforeSelectionCleared';
+  'selectionCreated' | 'selectionUpdated' | 'beforeTransform' | 'beforeSelectionCleared' ;
 
 export const FabricEvents: FabricEvent[] = [
   'drop',
@@ -33,6 +33,7 @@ export const FabricEvents: FabricEvent[] = [
   'mouseOver',
   'mouseOut',
   'mouseMove',
+  'mouseWheel',
   'mouseDblclick',
   'mouseUpBefore',
   'mouseDownBefore',
