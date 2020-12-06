@@ -56,6 +56,7 @@ export class FabricComponent implements AfterViewInit {
   @Output() mouseOver = new EventEmitter<any>();
   @Output() mouseOut = new EventEmitter<any>();
   @Output() mouseMove = new EventEmitter<any>();
+  @Output() mouseWheel = new EventEmitter<any>();
   @Output() mouseDblclick = new EventEmitter<any>();
   @Output() mouseUpBefore = new EventEmitter<any>();
   @Output() mouseDownBefore = new EventEmitter<any>();
