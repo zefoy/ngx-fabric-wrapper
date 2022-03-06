@@ -10,7 +10,7 @@
       <div class="box-title">Settings</div>
 
       <div class="action-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
-        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleType()'>{{(type == "component") ? "Switch to directive" : "Switch to component"}}</div>
+        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleType()'>{{(type === "component") ? "Switch to directive" : "Switch to component"}}</div>
 
         <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleDisabled()'>Toggle disabled state</div>
 
@@ -28,10 +28,10 @@
       <div class="box-title">Fabric</div>
 
       <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
-        <fabric *ngIf="type == 'component' && show" fxFlex="auto" [data]="data" [config]="config" [disabled]="disabled" (dataLoaded)="onDataLoaded($event)" (objectAdded)="onObjectAdded($event)" (selectionCreated)="onSelectionCreated($event)">
+        <fabric *ngIf="type === 'component' && show" fxFlex="auto" [data]="data" [config]="config" [disabled]="disabled" (dataLoaded)="onDataLoaded($event)" (objectAdded)="onObjectAdded($event)" (selectionCreated)="onSelectionCreated($event)">
         </fabric>
 
-        <div *ngIf="type == 'directive' && show" fxFlex="auto">
+        <div *ngIf="type === 'directive' && show" fxFlex="auto">
           <canvas class="fabric-canvas" [fabric]="config" [disabled]="disabled" (objectAdded)="onObjectAdded($event)" (selectionCreated)="onSelectionCreated($event)">
           </canvas>
         </div>

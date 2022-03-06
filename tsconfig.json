@@ -5,6 +5,7 @@
     "outDir": "./dist",
     "sourceMap": true,
     "declaration": false,
+    "skipLibCheck": true,
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "module": "esnext",
@@ -20,7 +21,7 @@
     ],
     "paths": {
       "ngx-fabric-wrapper": [
-        "dist/lib"
+        "./projects/lib/src/public-api.ts"
       ]
     }
   },
