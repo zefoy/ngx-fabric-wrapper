@@ -6,6 +6,7 @@ import { Directive, Optional, Inject,
   OnInit, OnDestroy, DoCheck, OnChanges,
   Input, Output, EventEmitter, NgZone, ElementRef,
   KeyValueDiffer, KeyValueDiffers, SimpleChanges } from '@angular/core';
+import { fromEvent, Subscription } from 'rxjs';
 
 import { FABRIC_CONFIG, FabricConfig, FabricConfigInterface,
   FabricEvent, FabricEvents } from './fabric.interfaces';
@@ -95,6 +96,8 @@ export class FabricDirective implements OnInit, OnDestroy, DoCheck, OnChanges {
   @Output() beforeTransform = new EventEmitter<any>();
   @Output() beforeSelectionCleared = new EventEmitter<any>();
 
+  private fabricEventsSubscription = Subscription.EMPTY;
+
   constructor(private zone: NgZone,
     private elementRef: ElementRef, private differs: KeyValueDiffers,
     @Optional() @Inject(FABRIC_CONFIG) private defaults: FabricConfigInterface) {}
@@ -129,17 +132,20 @@ export class FabricDirective implements OnInit, OnDestroy, DoCheck, OnChanges {
     });
 
     // Add native Fabric event handling
+    this.fabricEventsSubscription.unsubscribe();
+    this.fabricEventsSubscription = new Subscription();
     FabricEvents.forEach((eventName: FabricEvent) => {
       const fabricEvent = eventName.replace(/([A-Z])/g, (c) => `:${c.toLowerCase()}`);
 
       if (this.instance) {
-        this.instance.on(fabricEvent, (event: any) => {
-          this.zone.run(() => {
-            if (this[eventName].observers.length) {
-              this[eventName].emit(event);
-            }
-          });
+        const subscription = fromEvent(this.instance, fabricEvent).subscribe((event) => {
+          const eventEmitter = this[eventName];
+          if (eventEmitter.observers.length) {
+            this.zone.run(() => eventEmitter.emit(event));
+          }
         });
+
+        this.fabricEventsSubscription.add(subscription);
       }
     });
 
@@ -176,10 +182,10 @@ export class FabricDirective implements OnInit, OnDestroy, DoCheck, OnChanges {
 
       this.instance.dispose();
 
-      delete this.instance;
-
       this.instance = null;
     }
+
+    this.fabricEventsSubscription.unsubscribe();
   }
 
   ngDoCheck(): void {
