@@ -2,13 +2,17 @@ import { fabric } from 'fabric';
 
 import { Component, ViewChild } from '@angular/core';
 
-import { FabricComponent, FabricDirective, FabricConfigInterface } from 'ngx-fabric-wrapper';
+import {
+  FabricComponent,
+  FabricDirective,
+  FabricConfigInterface,
+} from 'ngx-fabric-wrapper';
 
 @Component({
   selector: 'my-app',
   moduleId: 'src/app/app.component',
   templateUrl: 'app.component.html',
-  styleUrls: [ 'app.component.css' ]
+  styleUrls: ['app.component.css'],
 })
 export class AppComponent {
   public show: boolean = true;
@@ -28,7 +32,7 @@ export class AppComponent {
             left: -100,
             width: 200,
             height: 60,
-            fill: '#cfcfcf'
+            fill: '#cfcfcf',
           },
           {
             type: 'text',
@@ -37,11 +41,11 @@ export class AppComponent {
             fontSize: 24,
             text: 'Example object',
             originX: 'center',
-            originY: 'center'
-          }
-        ]
-      }
-    ]
+            originY: 'center',
+          },
+        ],
+      },
+    ],
   };
 
   public type: string = 'component';
@@ -49,7 +53,7 @@ export class AppComponent {
   public disabled: boolean = false;
 
   public config: FabricConfigInterface = {
-    renderOnAddRemove: true
+    renderOnAddRemove: true,
   };
 
   @ViewChild(FabricComponent, { static: false }) componentRef?: FabricComponent;
@@ -58,21 +62,23 @@ export class AppComponent {
   constructor() {}
 
   public toggleType(): void {
-    this.type = (this.type === 'component') ? 'directive' : 'component';
+    this.type = this.type === 'component' ? 'directive' : 'component';
   }
 
   public addLine(): void {
-    const line = new fabric.Line([
-      44, 100, 300, 100
-    ], {
+    const line = new fabric.Line([44, 100, 300, 100], {
       fill: '#000000',
       stroke: '#000000',
-      strokeWidth: 3
+      strokeWidth: 3,
     });
 
     if (this.type === 'directive' && this.directiveRef) {
       this.directiveRef.fabric().add(line);
-    } else if (this.type === 'component' && this.componentRef && this.componentRef.directiveRef) {
+    } else if (
+      this.type === 'component' &&
+      this.componentRef &&
+      this.componentRef.directiveRef
+    ) {
       this.componentRef.directiveRef.fabric().add(line);
     }
   }
@@ -81,28 +87,39 @@ export class AppComponent {
     const text = new fabric.Text('Angular', {
       top: 120,
       left: 105,
-      fill: '#000000'
+      fill: '#000000',
     });
 
     if (this.type === 'directive' && this.directiveRef) {
       this.directiveRef.fabric().add(text);
-    } else if (this.type === 'component' && this.componentRef && this.componentRef.directiveRef) {
+    } else if (
+      this.type === 'component' &&
+      this.componentRef &&
+      this.componentRef.directiveRef
+    ) {
       this.componentRef.directiveRef.fabric().add(text);
     }
   }
 
   public addImage(): void {
-    fabric.Image.fromURL('https://angular.io/assets/images/logos/angular/angular.png', (image) => {
-      image.scale(0.5);
+    fabric.Image.fromURL(
+      'https://angular.io/assets/images/logos/angular/angular.png',
+      image => {
+        image.scale(0.5);
 
-      image.set({ left: 110, top: 180 });
+        image.set({ left: 110, top: 180 });
 
-      if (this.type === 'directive' && this.directiveRef) {
-        this.directiveRef.fabric().add(image);
-      } else if (this.type === 'component' && this.componentRef && this.componentRef.directiveRef) {
-        this.componentRef.directiveRef.fabric().add(image);
+        if (this.type === 'directive' && this.directiveRef) {
+          this.directiveRef.fabric().add(image);
+        } else if (
+          this.type === 'component' &&
+          this.componentRef &&
+          this.componentRef.directiveRef
+        ) {
+          this.componentRef.directiveRef.fabric().add(image);
+        }
       }
-    });
+    );
   }
 
   public toggleDisabled(): void {
@@ -112,7 +129,11 @@ export class AppComponent {
   public resetCanvasObjects(): void {
     if (this.type === 'directive' && this.directiveRef) {
       this.directiveRef.clear();
-    } else if (this.type === 'component' && this.componentRef && this.componentRef.directiveRef) {
+    } else if (
+      this.type === 'component' &&
+      this.componentRef &&
+      this.componentRef.directiveRef
+    ) {
       this.componentRef.directiveRef.clear();
     }
 

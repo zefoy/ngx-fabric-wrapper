@@ -1,6 +1,13 @@
-import { Component,
-  AfterViewInit, Input, Output, EventEmitter,
-  ViewChild, HostBinding, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  AfterViewInit,
+  Input,
+  Output,
+  EventEmitter,
+  ViewChild,
+  HostBinding,
+  ViewEncapsulation,
+} from '@angular/core';
 
 import { FabricDirective } from './fabric.directive';
 
@@ -10,8 +17,8 @@ import { FabricConfigInterface } from './fabric.interfaces';
   selector: 'fabric',
   exportAs: 'ngxFabric',
   templateUrl: './fabric.component.html',
-  styleUrls: [ './fabric.component.css' ],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./fabric.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class FabricComponent implements AfterViewInit {
   private json: any = null;
@@ -31,7 +38,8 @@ export class FabricComponent implements AfterViewInit {
   @Input() config?: FabricConfigInterface;
 
   @HostBinding('class.fabric')
-  @Input() useFabricClass: boolean = true;
+  @Input()
+  useFabricClass: boolean = true;
 
   @Output() dataLoaded = new EventEmitter<any>();
 
