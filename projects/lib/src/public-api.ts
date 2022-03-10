@@ -3,9 +3,8 @@ export { FabricDirective } from './lib/fabric.directive';
 
 export {
   FABRIC_CONFIG,
-
   FabricConfig,
-  FabricConfigInterface
+  FabricConfigInterface,
 } from './lib/fabric.interfaces';
 
 export { FabricModule } from './lib/fabric.module';
