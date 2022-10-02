@@ -37,7 +37,8 @@ export class AppComponent {
             fontSize: 24,
             text: 'Example object',
             originX: 'center',
-            originY: 'center'
+            originY: 'center',
+            styles: {}
           }
         ]
       }
