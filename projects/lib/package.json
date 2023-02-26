@@ -2,14 +2,14 @@
   "name": "ngx-fabric-wrapper",
   "description": "Angular wrapper library for Fabric",
   "bugs": "https://github.com/zefoy/ngx-fabric-wrapper/issues",
-  "version": "13.0.0",
+  "version": "14.0.0",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/zefoy/ngx-fabric-wrapper.git"
   },
   "dependencies": {
-    "fabric": "^5.2.0",
+    "fabric": "^5.3.0",
     "resize-observer-polyfill": "^1.5.0"
   },
   "peerDependencies": {
