@@ -104,6 +104,8 @@ export class FabricDirective implements OnInit, OnDestroy, DoCheck, OnChanges {
 
     params.assign(this.config); // Custom configuration
 
+    Object.keys(params).forEach(key => params[key] === undefined && delete params[key])
+
     this.zone.runOutsideAngular(() => {
       if (!this.disabled) {
         this.instance = new fabric.Canvas(this.elementRef.nativeElement, params);

@@ -1,37 +1,37 @@
-<div class="box-container" fxLayout="column" [ngStyle.lt-sm]="'min-height: 800px;'">
+<div class="box-container flex-col">
   <div class="app-title">Simple example app for the ngx-fabric-wrapper</div>
 
   <div class="info-container">
     This example only shows some of the available features, to see all check Fabric demos / documentation.
   </div>
 
-  <div class="horizontal-container" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="stretch" fxFlex="auto">
-    <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="50%">
+  <div class="horizontal-container flex content-stretch flex-col md:flex-row">
+    <div class="vertical-container flex-1 flex-col content-stretch" style="min-width: 0">
       <div class="box-title">Settings</div>
 
-      <div class="action-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
-        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleType()'>{{(type === "component") ? "Switch to directive" : "Switch to component"}}</div>
+      <div class="action-container flex-col content-stretch">
+        <div class="action-button flex items-center justify-center" (click)='toggleType()'>{{(type === "component") ? "Switch to directive" : "Switch to component"}}</div>
 
-        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleDisabled()'>Toggle disabled state</div>
+        <div class="action-button flex items-center justify-center" (click)='toggleDisabled()'>Toggle disabled state</div>
 
-        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='addLine()'>Add line object</div>
+        <div class="action-button flex items-center justify-center" (click)='addLine()'>Add line object</div>
 
-        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='addText()'>Add text object</div>
+        <div class="action-button flex items-center justify-center" (click)='addText()'>Add text object</div>
 
-        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='addImage()'>Add image object</div>
+        <div class="action-button flex items-center justify-center" (click)='addImage()'>Add image object</div>
 
-        <div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='resetCanvasObjects()'>Reset the canvas</div>
+        <div class="action-button flex items-center justify-center" (click)='resetCanvasObjects()'>Reset the canvas</div>
       </div>
     </div>
 
-    <div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="50%">
+    <div class="vertical-container flex-1 flex-col content-stretch" style="min-width: 0">
       <div class="box-title">Fabric</div>
 
-      <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
-        <fabric *ngIf="type === 'component' && show" fxFlex="auto" [data]="data" [config]="config" [disabled]="disabled" (dataLoaded)="onDataLoaded($event)" (objectAdded)="onObjectAdded($event)" (selectionCreated)="onSelectionCreated($event)">
+      <div class="content-container flex flex-col content-stretch">
+        <fabric *ngIf="type === 'component' && show" class="flex" [data]="data" [config]="config" [disabled]="disabled" (dataLoaded)="onDataLoaded($event)" (objectAdded)="onObjectAdded($event)" (selectionCreated)="onSelectionCreated($event)">
         </fabric>
 
-        <div *ngIf="type === 'directive' && show" fxFlex="auto">
+        <div *ngIf="type === 'directive' && show" class="flex flex-1">
           <canvas class="fabric-canvas" [fabric]="config" [disabled]="disabled" (objectAdded)="onObjectAdded($event)" (selectionCreated)="onSelectionCreated($event)">
           </canvas>
         </div>
