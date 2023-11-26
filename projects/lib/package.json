@@ -2,7 +2,7 @@
   "name": "ngx-fabric-wrapper",
   "description": "Angular wrapper library for Fabric",
   "bugs": "https://github.com/zefoy/ngx-fabric-wrapper/issues",
-  "version": "15.0.0",
+  "version": "16.0.0",
   "license": "MIT",
   "repository": {
     "type": "git",
