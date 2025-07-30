@@ -1,6 +1,6 @@
 {
   "license": "MIT",
-  "version": "18.0.0",
+  "version": "19.0.0",
   "name": "ngx-fabric-wrapper",
   "description": "Angular wrapper library for Fabric",
   "bugs": "https://github.com/zefoy/ngx-fabric-wrapper/issues",
@@ -9,11 +9,11 @@
     "url": "https://github.com/zefoy/ngx-fabric-wrapper.git"
   },
   "dependencies": {
-    "fabric": "^5.4.0",
+    "fabric": "^6.7.0",
     "resize-observer-polyfill": "^1.5.0"
   },
   "peerDependencies": {
-    "@angular/common": ">=9.0.0",
-    "@angular/core": ">=9.0.0"
+    "@angular/common": ">=10.0.0",
+    "@angular/core": ">=10.0.0"
   }
 }

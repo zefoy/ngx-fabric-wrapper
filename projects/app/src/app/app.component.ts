@@ -1,14 +1,20 @@
-import { fabric } from 'fabric';
+import { Line, FabricText, FabricImage } from "fabric";
 
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild } from "@angular/core";
+import { NgIf } from "@angular/common";
 
-import { FabricComponent, FabricDirective, FabricConfigInterface } from 'ngx-fabric-wrapper';
+import {
+  FabricComponent,
+  FabricDirective,
+  FabricConfigInterface,
+} from "ngx-fabric-wrapper";
 
 @Component({
-  selector: 'my-app',
-  moduleId: 'src/app/app.component',
-  templateUrl: 'app.component.html',
-  styleUrls: [ 'app.component.css' ]
+  selector: "my-app",
+  moduleId: "src/app/app.component",
+  templateUrl: "app.component.html",
+  styleUrls: ["app.component.css"],
+  imports: [NgIf, FabricComponent, FabricDirective],
 })
 export class AppComponent {
   public show: boolean = true;
@@ -16,41 +22,41 @@ export class AppComponent {
   public data: any = {
     objects: [
       {
-        type: 'group',
+        type: "group",
         top: 22,
         left: 72,
         width: 200,
         height: 60,
         objects: [
           {
-            type: 'rect',
+            type: "rect",
             top: -30,
             left: -100,
             width: 200,
             height: 60,
-            fill: '#cfcfcf'
+            fill: "#cfcfcf",
           },
           {
-            type: 'text',
+            type: "text",
             width: 200,
             height: 60,
             fontSize: 24,
-            text: 'Example object',
-            originX: 'center',
-            originY: 'center',
-            styles: {}
-          }
-        ]
-      }
-    ]
+            text: "Example object",
+            originX: "center",
+            originY: "center",
+            styles: {},
+          },
+        ],
+      },
+    ],
   };
 
-  public type: string = 'component';
+  public type: string = "component";
 
   public disabled: boolean = false;
 
   public config: FabricConfigInterface = {
-    renderOnAddRemove: true
+    renderOnAddRemove: true,
   };
 
   @ViewChild(FabricComponent, { static: false }) componentRef?: FabricComponent;
@@ -59,48 +65,62 @@ export class AppComponent {
   constructor() {}
 
   public toggleType(): void {
-    this.type = (this.type === 'component') ? 'directive' : 'component';
+    this.type = this.type === "component" ? "directive" : "component";
   }
 
   public addLine(): void {
-    const line = new fabric.Line([
-      44, 100, 300, 100
-    ], {
-      fill: '#000000',
-      stroke: '#000000',
-      strokeWidth: 3
+    const line = new Line([44, 100, 300, 100], {
+      fill: "#000000",
+      stroke: "#000000",
+      strokeWidth: 3,
     });
 
-    if (this.type === 'directive' && this.directiveRef) {
+    if (this.type === "directive" && this.directiveRef) {
       this.directiveRef.fabric().add(line);
-    } else if (this.type === 'component' && this.componentRef && this.componentRef.directiveRef) {
+    } else if (
+      this.type === "component" &&
+      this.componentRef &&
+      this.componentRef.directiveRef
+    ) {
       this.componentRef.directiveRef.fabric().add(line);
     }
   }
 
   public addText(): void {
-    const text = new fabric.Text('Angular', {
+    const text = new FabricText("Angular", {
       top: 120,
       left: 105,
-      fill: '#000000'
+      fill: "#000000",
     });
 
-    if (this.type === 'directive' && this.directiveRef) {
+    if (this.type === "directive" && this.directiveRef) {
       this.directiveRef.fabric().add(text);
-    } else if (this.type === 'component' && this.componentRef && this.componentRef.directiveRef) {
+    } else if (
+      this.type === "component" &&
+      this.componentRef &&
+      this.componentRef.directiveRef
+    ) {
       this.componentRef.directiveRef.fabric().add(text);
     }
   }
 
   public addImage(): void {
-    fabric.Image.fromURL('https://angular.io/assets/images/logos/angular/angular.png', (image) => {
+    const image = FabricImage.fromURL(
+      "https://angular.io/assets/images/logos/angular/angular.png"
+    );
+
+    image.then((image: FabricImage) => {
       image.scale(0.5);
 
       image.set({ left: 110, top: 180 });
 
-      if (this.type === 'directive' && this.directiveRef) {
+      if (this.type === "directive" && this.directiveRef) {
         this.directiveRef.fabric().add(image);
-      } else if (this.type === 'component' && this.componentRef && this.componentRef.directiveRef) {
+      } else if (
+        this.type === "component" &&
+        this.componentRef &&
+        this.componentRef.directiveRef
+      ) {
         this.componentRef.directiveRef.fabric().add(image);
       }
     });
@@ -111,9 +131,13 @@ export class AppComponent {
   }
 
   public resetCanvasObjects(): void {
-    if (this.type === 'directive' && this.directiveRef) {
+    if (this.type === "directive" && this.directiveRef) {
       this.directiveRef.clear();
-    } else if (this.type === 'component' && this.componentRef && this.componentRef.directiveRef) {
+    } else if (
+      this.type === "component" &&
+      this.componentRef &&
+      this.componentRef.directiveRef
+    ) {
       this.componentRef.directiveRef.clear();
     }
 
@@ -121,14 +145,14 @@ export class AppComponent {
   }
 
   public onDataLoaded(canvas: any): void {
-    console.log('Data loaded:', canvas);
+    console.log("Data loaded:", canvas);
   }
 
   public onObjectAdded(event: any): void {
-    console.log('Object added:', event);
+    console.log("Object added:", event);
   }
 
   public onSelectionCreated(event: any): void {
-    console.log('Selection created:', event);
+    console.log("Selection created:", event);
   }
 }

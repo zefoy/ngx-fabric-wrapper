@@ -1,5 +1,18 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { bootstrapApplication } from "@angular/platform-browser";
 
-import { AppModule } from './app/app.module';
+import { FabricConfigInterface, FABRIC_CONFIG } from "ngx-fabric-wrapper";
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+import { AppComponent } from "./app/app.component";
+
+const DEFAULT_FABRIC_CONFIG: FabricConfigInterface = {
+  allowTouchScrolling: true,
+};
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    {
+      provide: FABRIC_CONFIG,
+      useValue: DEFAULT_FABRIC_CONFIG,
+    },
+  ],
+});

@@ -11,7 +11,8 @@ import { FabricConfigInterface } from './fabric.interfaces';
   exportAs: 'ngxFabric',
   templateUrl: './fabric.component.html',
   styleUrls: [ './fabric.component.css' ],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  imports: [FabricDirective],
 })
 export class FabricComponent implements AfterViewInit {
   private json: any = null;
