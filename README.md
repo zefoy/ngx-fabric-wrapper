@@ -4,6 +4,8 @@
 
 This is an Angular wrapper library for the [Fabric](http://fabricjs.com/). To use this library you should get familiar with the Fabric documentation as well since this documentation only explains details specific to this wrapper.
 
+This documentation is for the latest version which requires Angular version newer than 2 major versions prior to the current latest version. For older Angular versions you need to use an older version of this library.
+
 ### Quick links
 
 [Example application](https://zefoy.github.io/ngx-fabric-wrapper/)
@@ -32,29 +34,41 @@ npm run start
 npm install ngx-fabric-wrapper --save --no-optional
 ```
 
-##### Load the module for your app (with global configuration):
+##### Provide the global configuration:
 
-Providing the global configuration is optional and when used you should only provide the configuration in your root module.
+Global configuration should be provided only once (this is usually done in the bootstrap phase).
 
 ```javascript
-import { FabricModule } from 'ngx-fabric-wrapper';
-import { FABRIC_CONFIG } from 'ngx-fabric-wrapper';
-import { FabricConfigInterface } from 'ngx-fabric-wrapper';
+import { FABRIC_CONFIG } from 'ngx-fabric-wrapper'
 
 const DEFAULT_FABRIC_CONFIG: FabricConfigInterface = {
 };
 
-@NgModule({
+bootstrapApplication(AppComponent, {
   ...
-  imports: [
-    ...
-    FabricModule
-  ],
   providers: [
+    ...
+    provideHttpClient(),
     {
       provide: FABRIC_CONFIG,
       useValue: DEFAULT_FABRIC_CONFIG
     }
+  ]
+})
+```
+
+##### Import the library into your component:
+
+
+```javascript
+import { FabricComponent, FabricDirective } from 'ngx-fabric-wrapper';
+
+@Component({
+  ...
+  imports: [
+    ...
+    FabricComponent,
+    FabricDirective
   ]
 })
 ```
