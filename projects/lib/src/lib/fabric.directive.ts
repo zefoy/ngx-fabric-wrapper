@@ -290,21 +290,17 @@ export class FabricDirective implements OnInit, OnDestroy, DoCheck, OnChanges {
 
   public loadFromJSON(json: any, callback?: Function, reviverOpt?: any): void {
     if (this.instance) {
-      this.instance.loadFromJSON(
-        json,
-        () => {
-          let renderAll = true;
+      this.instance.loadFromJSON(json, reviverOpt).then(() => {
+        let renderAll = true;
 
-          if (callback) {
-            renderAll = callback();
-          }
+        if (callback) {
+          renderAll = callback();
+        }
 
-          if (renderAll && this.instance) {
-            this.instance.renderAll();
-          }
-        },
-        reviverOpt
-      );
+        if (renderAll && this.instance) {
+          this.instance.renderAll();
+        }
+      });
     }
   }
 }

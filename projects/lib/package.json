@@ -1,6 +1,6 @@
 {
   "license": "MIT",
-  "version": "20.0.0",
+  "version": "20.1.0",
   "name": "ngx-fabric-wrapper",
   "description": "Angular wrapper library for Fabric",
   "bugs": "https://github.com/zefoy/ngx-fabric-wrapper/issues",
