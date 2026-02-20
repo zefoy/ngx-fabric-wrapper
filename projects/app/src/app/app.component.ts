@@ -27,6 +27,8 @@ export class AppComponent {
         left: 72,
         width: 200,
         height: 60,
+        originX: "left",
+        originY: "top",
         objects: [
           {
             type: "rect",
@@ -34,6 +36,8 @@ export class AppComponent {
             left: -100,
             width: 200,
             height: 60,
+            originX: "left",
+            originY: "top",
             fill: "#cfcfcf",
           },
           {
@@ -90,6 +94,8 @@ export class AppComponent {
     const text = new FabricText("Angular", {
       top: 120,
       left: 105,
+      originX: "left",
+      originY: "top",
       fill: "#000000",
     });
 
@@ -106,13 +112,13 @@ export class AppComponent {
 
   public addImage(): void {
     const image = FabricImage.fromURL(
-      "https://angular.io/assets/images/logos/angular/angular.png"
+      "https://angular.io/assets/images/logos/angular/angular.png",
     );
 
     image.then((image: FabricImage) => {
       image.scale(0.5);
 
-      image.set({ left: 110, top: 180 });
+      image.set({ left: 110, top: 160, originX: "left", originY: "top" });
 
       if (this.type === "directive" && this.directiveRef) {
         this.directiveRef.fabric().add(image);

@@ -122,7 +122,7 @@ export class FabricDirective implements OnInit, OnDestroy, DoCheck, OnChanges {
     private zone: NgZone,
     private elementRef: ElementRef,
     private differs: KeyValueDiffers,
-    @Optional() @Inject(FABRIC_CONFIG) private defaults: FabricConfigInterface
+    @Optional() @Inject(FABRIC_CONFIG) private defaults: FabricConfigInterface,
   ) {}
 
   ngOnInit(): void {
@@ -131,19 +131,19 @@ export class FabricDirective implements OnInit, OnDestroy, DoCheck, OnChanges {
     params.assign(this.config); // Custom configuration
 
     Object.keys(params).forEach(
-      (key) => params[key] === undefined && delete params[key]
+      (key) => params[key] === undefined && delete params[key],
     );
 
     this.zone.runOutsideAngular(() => {
       if (!this.disabled) {
         this.instance = new Canvas(
           this.elementRef.nativeElement,
-          params as any as CanvasOptions
+          params as any as CanvasOptions,
         );
       } else {
         this.instance = new StaticCanvas(
           this.elementRef.nativeElement,
-          params as any as StaticCanvasOptions
+          params as any as StaticCanvasOptions,
         );
       }
 
@@ -168,7 +168,7 @@ export class FabricDirective implements OnInit, OnDestroy, DoCheck, OnChanges {
     FabricEvents.forEach((eventName: FabricEvent) => {
       const fabricEvent = eventName.replace(
         /([A-Z])/g,
-        (c) => `:${c.toLowerCase()}`
+        (c) => `:${c.toLowerCase()}`,
       ) as any;
 
       if (this.instance) {
@@ -203,7 +203,7 @@ export class FabricDirective implements OnInit, OnDestroy, DoCheck, OnChanges {
       });
 
       this.ro.observe(
-        this.elementRef.nativeElement.parentElement.parentElement
+        this.elementRef.nativeElement.parentElement.parentElement,
       );
     });
   }
@@ -276,7 +276,7 @@ export class FabricDirective implements OnInit, OnDestroy, DoCheck, OnChanges {
     this.initialWidth = width;
 
     if (this.instance) {
-      this.instance.setWidth(width);
+      this.instance.setDimensions({ width });
     }
   }
 
@@ -284,7 +284,7 @@ export class FabricDirective implements OnInit, OnDestroy, DoCheck, OnChanges {
     this.initialHeight = height;
 
     if (this.instance) {
-      this.instance.setHeight(height);
+      this.instance.setDimensions({ height });
     }
   }
 
