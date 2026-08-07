@@ -51,17 +51,23 @@ export class FabricDirective implements OnInit, OnDestroy, DoCheck, OnChanges {
   private configDiff: KeyValueDiffer<string, any> | null = null;
 
   @Input()
-  set zoom(zoom: number) {
-    this.setZoom(zoom);
+  set zoom(zoom: number | null | undefined) {
+    if (zoom !== null && zoom !== undefined) {
+      this.setZoom(zoom);
+    }
   }
 
   @Input()
-  set width(width: number) {
-    this.setWidth(width);
+  set width(width: number | null | undefined) {
+    if (width !== null && width !== undefined) {
+      this.setWidth(width);
+    }
   }
   @Input()
-  set height(height: number) {
-    this.setHeight(height);
+  set height(height: number | null | undefined) {
+    if (height !== null && height !== undefined) {
+      this.setHeight(height);
+    }
   }
 
   @Input() disabled: boolean = false;
@@ -130,20 +136,20 @@ export class FabricDirective implements OnInit, OnDestroy, DoCheck, OnChanges {
 
     params.assign(this.config); // Custom configuration
 
-    Object.keys(params).forEach(
-      (key) => params[key] === undefined && delete params[key],
+    const mergedParams = Object.fromEntries(
+      Object.entries(params).filter(([, value]) => value !== undefined),
     );
 
     this.zone.runOutsideAngular(() => {
       if (!this.disabled) {
         this.instance = new Canvas(
           this.elementRef.nativeElement,
-          params as any as CanvasOptions,
+          mergedParams as CanvasOptions,
         );
       } else {
         this.instance = new StaticCanvas(
           this.elementRef.nativeElement,
-          params as any as StaticCanvasOptions,
+          mergedParams as StaticCanvasOptions,
         );
       }
 
@@ -217,8 +223,6 @@ export class FabricDirective implements OnInit, OnDestroy, DoCheck, OnChanges {
       this.objectsJSON = this.instance.toObject();
 
       this.instance.dispose();
-
-      delete this.instance;
 
       this.instance = null;
     }

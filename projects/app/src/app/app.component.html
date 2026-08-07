@@ -28,13 +28,17 @@
       <div class="box-title">Fabric</div>
 
       <div class="content-container flex flex-col content-stretch">
-        <fabric *ngIf="type === 'component' && show" class="flex" [data]="data" [config]="config" [disabled]="disabled" (dataLoaded)="onDataLoaded($event)" (objectAdded)="onObjectAdded($event)" (selectionCreated)="onSelectionCreated($event)">
-        </fabric>
+        @if (type === 'component' && show) {
+          <fabric class="flex" [data]="data" [config]="config" [disabled]="disabled" (dataLoaded)="onDataLoaded($event)" (objectAdded)="onObjectAdded($event)" (selectionCreated)="onSelectionCreated($event)">
+          </fabric>
+        }
 
-        <div *ngIf="type === 'directive' && show" class="flex flex-1">
-          <canvas class="fabric-canvas" [fabric]="config" [disabled]="disabled" (objectAdded)="onObjectAdded($event)" (selectionCreated)="onSelectionCreated($event)">
-          </canvas>
-        </div>
+        @if (type === 'directive' && show) {
+          <div class="flex flex-1">
+            <canvas class="fabric-canvas" [fabric]="config" [disabled]="disabled" (objectAdded)="onObjectAdded($event)" (selectionCreated)="onSelectionCreated($event)">
+            </canvas>
+          </div>
+        }
       </div>
     </div>
   </div>

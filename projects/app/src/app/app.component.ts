@@ -1,7 +1,7 @@
 import { Line, FabricText, FabricImage } from "fabric";
 
 import { Component, ViewChild } from "@angular/core";
-import { NgIf } from "@angular/common";
+
 
 import {
   FabricComponent,
@@ -14,7 +14,7 @@ import {
   moduleId: "src/app/app.component",
   templateUrl: "app.component.html",
   styleUrls: ["app.component.css"],
-  imports: [NgIf, FabricComponent, FabricDirective],
+  imports: [FabricComponent, FabricDirective],
 })
 export class AppComponent {
   public show: boolean = true;
